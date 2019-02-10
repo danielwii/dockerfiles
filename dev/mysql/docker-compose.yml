@@ -2,16 +2,28 @@ version: '3'
 
 services:
   phpmyadmin:
-    image: "phpmyadmin/phpmyadmin:4.8"
+    image: "phpmyadmin/phpmyadmin:4.8.5"
     ports:
       - "20080:80"
     environment:
       - "PMA_HOST=host.docker.internal"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"
   mysql:
     image: "mysql:5.7"
     ports:
       - "3306:3306"
     environment:
-      - "MYSQL_ROOT_PASSWORD=password"
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ROOT_HOST=%
     volumes:
       - "$HOME/Development/data/mysql:/var/lib/mysql"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"
+    # command: >

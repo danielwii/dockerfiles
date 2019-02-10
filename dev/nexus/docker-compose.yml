@@ -7,3 +7,8 @@ services:
       - "8081:8081"
     volumes:
       - "$HOME/Development/data/nexus-data:/nexus-data"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"
