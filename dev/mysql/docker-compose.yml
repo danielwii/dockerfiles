@@ -2,11 +2,12 @@ version: '3'
 
 services:
   phpmyadmin:
-    image: "phpmyadmin/phpmyadmin:4.9"
+    image: "phpmyadmin/phpmyadmin:5.0"
     ports:
       - "20080:80"
     environment:
-      - "PMA_HOST=host.docker.internal"
+      # - "PMA_ARBITRARY=1"
+      - "PMA_HOSTS=host.docker.internal"
     logging:
       driver: "json-file"
       options:
@@ -16,6 +17,7 @@ services:
     image: "mysql:5.7"
     ports:
       - "3306:3306"
+      - "33060:33060"
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_ROOT_HOST=%
