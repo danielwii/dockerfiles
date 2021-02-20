@@ -1,0 +1,5 @@
+- module: mysql
+  metricsets: ["status"]
+  hosts: ["tcp(host.docker.internal:3306)/"]
+  username: root
+  password: ${MYSQL_PASSWORD}

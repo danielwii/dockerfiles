@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  minio:
+    image: "minio/minio"
+    ports:
+      - "9000:9000"
+    volumes:
+      - "$HOME/Development/data/minio/data:/data"
+      - "$HOME/Development/data/minio/config:/root/.minio"
+    environment:
+      - MINIO_ACCESS_KEY=2GH30RWYYL7Q3VLGIYUE
+      - MINIO_SECRET_KEY=Sm5yxjK2nGJ8MpHkucSQvM+xoHPbr9K2yEWcZYUB
+    command: "server /data"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"

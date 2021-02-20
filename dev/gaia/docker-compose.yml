@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  gaia:
+    image: "gaiapipeline/gaia:v0.2.1-go"
+    ports:
+      - "20070:8080"
+    volumes:
+      - "$HOME/Development/data/gaia:/data"

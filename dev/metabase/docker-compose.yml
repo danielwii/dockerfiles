@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  metabase:
+    image: "metabase/metabase"
+    ports:
+      - "20030:3000"
+    # environment:
+      # - "PMA_ARBITRARY=1"
+      # - "PMA_HOSTS=host.docker.internal"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"

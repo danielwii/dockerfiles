@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  synapse:
+    image: matrixdotorg/synapse:v1.0.0
+    environment: 
+      - SYNAPSE_REPORT_STATS=yes
+      - SYNAPSE_NO_TLS=1
+      - SYNAPSE_ENABLE_REGISTRATION=true
+      - SYNAPSE_ALLOW_GUEST=true
+      - SYNAPSE_SERVER_NAME=my.matrix.host
+    ports:
+      - 8448:8448
+      - 80:8008
+    volumes:
+      - "$HOME/Development/data/matrix/data:/data"

@@ -1,0 +1,26 @@
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+#filebeat.autodiscover:
+#  providers:
+#    - type: docker
+#      hints.enabled: true
+
+filebeat.modules:
+  - module: mysql
+#    error:
+#      enabled: true
+#      var.paths: [ "/path/to/log/mysql/error.log*" ]
+    slowlog:
+      enabled: true
+      var.paths: ["/opt/mysql/data/*-slow.log"]
+
+processors:
+- add_cloud_metadata: ~
+
+output.elasticsearch:
+  hosts: '${ELASTICSEARCH_HOSTS:172.17.0.1:9200}'
+  username: '${ELASTICSEARCH_USERNAME:}'
+  password: '${ELASTICSEARCH_PASSWORD:}'

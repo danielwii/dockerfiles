@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  logio:
+    image: "node:12-alpine"
+    ports:
+      - 6688:6688
+      - 6689:6689
+    # command: >
+    #   yarn global add log.io
+    #   log.io-server
+    command: >
+      sh -c "
+        npm i log.io -g --user 'root'
+        # yarn global add log.io
+        log.io-server
+      "
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"

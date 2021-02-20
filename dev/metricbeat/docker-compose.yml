@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  metricbeat:
+    image: "docker.elastic.co/beats/metricbeat-oss:7.10.2"
+    user: root
+    environment:
+      - setup.kibana.host=172.17.0.1:5601
+      - output.elasticsearch.hosts=[172.17.0.1:9200]
+    volumes:
+      - "$PWD/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro"
+#      - "$HOME/Development/data/mysql:/opt/mysql/data:ro"
+#      - "/var/lib/docker/containers:/var/lib/docker/containers:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"

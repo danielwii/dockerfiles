@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  upsource:
+    image: jetbrains/upsource:2018.2.1013
+    ports:
+      - 28080:8080
+    volumes:
+      - $HOME/Development/data/upsource/data:/opt/upsource/data
+      - $HOME/Development/data/upsource/conf:/opt/upsource/conf
+      - $HOME/Development/data/upsource/logs:/opt/upsource/logs
+      - $HOME/Development/data/upsource/backups:/opt/upsource/backups

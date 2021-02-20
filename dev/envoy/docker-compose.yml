@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  redis:
+    image: envoyproxy/envoy-alpine:v1.17.0
+    # command: ["redis-server", "--appendonly", "yes"]
+    # hostname: redis
+    ports:
+      - "10000:10000"
+      - "9901:9901"
+    # networks:
+    #   - redis-net
+    # volumes:
+    #   - redis-data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"
+    # command: >
+
+# networks:
+#   redis-net:
+
+# volumes:
+#   redis-data:

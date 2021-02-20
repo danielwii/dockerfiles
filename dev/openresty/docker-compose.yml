@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  openrestry:
+    image: openresty/openresty:1.13.6.2-2-alpine
+    volumes:
+      - ./conf.d://etc/nginx/conf.d:ro
+    ports:
+      - 1080:80

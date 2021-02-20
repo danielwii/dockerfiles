@@ -2,15 +2,18 @@ version: '3'
 
 services:
   redis:
-    image: redis:5-alpine
-    command: ["redis-server", "--appendonly", "yes"]
+    image: bitnami/redis:6.0
+#    command: ["redis-server", "--appendonly", "yes"]
     hostname: redis
     ports:
       - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+#      - REDIS_PASSWORD=password
     networks:
       - redis-net
-    volumes:
-      - redis-data:/data
+    # volumes:
+    #   - redis-data:/data
     logging:
       driver: "json-file"
       options:
@@ -21,5 +24,5 @@ services:
 networks:
   redis-net:
 
-volumes:
-  redis-data:
+# volumes:
+#   redis-data:
