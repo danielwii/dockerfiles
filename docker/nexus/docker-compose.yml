@@ -3,6 +3,8 @@ version: '3'
 services:
   nexus:
     image: "sonatype/nexus3:3.16.0"
+    deploy:
+      replicas: 0
     ports:
       - "8081:8081"
     volumes:
