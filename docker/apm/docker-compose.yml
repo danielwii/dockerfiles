@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  apm:
+    image: docker.elastic.co/apm/apm-server:7.11.1
+    environment:
+      - ELASTICSEARCH_HOSTS=http://172.17.0.1:9200
+      - KIBANA_HOST=http://172.17.0.1:5601
+    ports:
+      - 8200:8200
+    volumes:
+      - "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"

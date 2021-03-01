@@ -1,0 +1,42 @@
+#
+# ** THIS IS AN AUTO-GENERATED FILE **
+#
+
+# Default Kibana configuration for docker target
+server.name: kibana
+server.host: "0.0.0.0"
+#server.ssl.enabled: true
+elasticsearch.hosts: [ "http://172.17.0.1:9200" ]
+monitoring.ui.container.elasticsearch.enabled: true
+
+xpack.encryptedSavedObjects.encryptionKey: TuW%4$lyWx1XNS^!EjbC!Fb5lKe6trRP
+xpack.reporting.encryptionKey: TuW%4$lyWx1XNS^!EjbC!Fb5lKe6trRP
+xpack.security.encryptionKey: TuW%4$lyWx1XNS^!EjbC!Fb5lKe6trRP
+
+xpack.fleet.enabled: true
+xpack.fleet.agents.tlsCheckDisabled: true
+xpack.security.enabled: true
+
+#  Changed password for user apm_system
+#  PASSWORD apm_system = kj4LOvPRbBJX6kgsDv7w
+#
+#  Changed password for user kibana_system
+#  PASSWORD kibana_system = ei5O5ZZb7MC6BRLfVMTY
+#
+#  Changed password for user kibana
+#  PASSWORD kibana = ei5O5ZZb7MC6BRLfVMTY
+#
+#  Changed password for user logstash_system
+#  PASSWORD logstash_system = fl2JQkA2E6sGu8ACEZXq
+#
+#  Changed password for user beats_system
+#  PASSWORD beats_system = 1YQzPZgXWNHY2085m03w
+#
+#  Changed password for user remote_monitoring_user
+#  PASSWORD remote_monitoring_user = 1zaMH5ymtwRg7YZTA1FA
+#
+#  Changed password for user elastic
+#  PASSWORD elastic = fQJ18gnrJOq6hnmYoyVC
+
+elasticsearch.username: "kibana_system"
+elasticsearch.password: "ei5O5ZZb7MC6BRLfVMTY"

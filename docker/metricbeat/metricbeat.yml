@@ -16,9 +16,9 @@ metricbeat.modules:
   - module: mysql
     metricsets:
       - status
-    #  - galera_status
-    #  - performance
-    #  - query
+      - galera_status
+#      - performance
+#      - query
     period: 10s
 
     # Host DSN should be defined as "user:pass@tcp(127.0.0.1:3306)/"
@@ -26,7 +26,7 @@ metricbeat.modules:
     # or another DSN format supported by <https://github.com/Go-SQL-Driver/MySQL/>.
     # The username and password can either be set in the DSN or using the username
     # and password config options. Those specified in the DSN take precedence.
-    hosts: ["root:password@tcp(172.17.0.1:3306)/"]
+    hosts: [ "root:password@tcp(172.17.0.1:3306)/" ]
 
     # Username of hosts. Empty by default.
     #username: root
@@ -36,10 +36,28 @@ metricbeat.modules:
 
     # By setting raw to true, all raw fields from the status metricset will be added to the event.
     #raw: false
+#  - module: nginx
+#    metricsets: [ "stubstatus" ]
+#    enabled: true
+#    period: 10s
+#
+#    # Nginx hosts
+#    hosts: [ "http://172.17.0.1:8000" ]
+#
+#    # Path to server status. Default nginx_status
+#    server_status_path: "nginx_status"
+  - module: elasticsearch
+    metricsets:
+      - node
+      - node_stats
+    period: 10s
+    hosts: [ "http://172.17.0.1:9200" ]
 
 output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:172.17.0.1:9200}'
-  username: '${ELASTICSEARCH_USERNAME:}'
-  password: '${ELASTICSEARCH_PASSWORD:}'
+  username: '${ELASTICSEARCH_USERNAME:beats_system}'
+  password: '${ELASTICSEARCH_PASSWORD:1YQzPZgXWNHY2085m03w}'
+
+setup.dashboards.enabled: true
 setup.kibana:
   host: "172.17.0.1:5601"

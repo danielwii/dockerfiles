@@ -16,3 +16,6 @@ node:
   ingest: true
 discovery:
   type: single-node
+
+xpack.security.enabled: true
+xpack.security.authc.api_key.enabled: true

@@ -1,0 +1,9 @@
+- type: http
+  id: default-monitor
+  name: Default Montior
+  schedule: '@every 5s'
+  urls:
+#    - http://172.17.0.1:9200
+    - http://172.17.0.1:5601
+
+  tags: [ "service-X", "infra-tier" ]

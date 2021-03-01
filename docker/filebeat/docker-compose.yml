@@ -2,7 +2,7 @@ version: '3'
 
 services:
   filebeat:
-    image: "docker.elastic.co/beats/filebeat-oss:7.10.2"
+    image: docker.elastic.co/beats/filebeat-oss:7.10.2
     user: root
     environment:
       - setup.kibana.host=172.17.0.1:5601
@@ -10,5 +10,6 @@ services:
     volumes:
       - "$PWD/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro"
       - "$HOME/Development/data/mysql:/opt/mysql/data:ro"
+      - "$HOME/Development/data/nginx:/opt/nginx/data:ro"
 #      - "/var/lib/docker/containers:/var/lib/docker/containers:ro"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"

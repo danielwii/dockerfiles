@@ -10,17 +10,38 @@ filebeat.config:
 
 filebeat.modules:
   - module: mysql
-#    error:
-#      enabled: true
-#      var.paths: [ "/path/to/log/mysql/error.log*" ]
+    #    error:
+    #      enabled: true
+    #      var.paths: [ '/path/to/log/mysql/error.log*' ]
     slowlog:
       enabled: true
-      var.paths: ["/opt/mysql/data/*-slow.log"]
+      var.paths: [ '/opt/mysql/data/*-slow.log' ]
+  - module: nginx
+    access:
+      enabled: true
+      var.paths: [ '/opt/nginx/data/access.log*' ]
+    error:
+      enabled: true
+      var.paths: [ '/opt/nginx/data/error.log*' ]
+    ingress_controller:
+      enabled: false
 
 processors:
-- add_cloud_metadata: ~
+  - add_cloud_metadata: ~
+
+logging.metrics.enabled: true
 
 output.elasticsearch:
+  index: 'gateway-v1-%{+yyyy.MM.dd}'
   hosts: '${ELASTICSEARCH_HOSTS:172.17.0.1:9200}'
   username: '${ELASTICSEARCH_USERNAME:}'
   password: '${ELASTICSEARCH_PASSWORD:}'
+
+setup.template.name: "gateway"
+setup.template.pattern: "gateway-*"
+
+setup.dashboards.enabled: true
+setup.kibana:
+  host: '${KIBANA_HOSTS:172.17.0.1:5601}'
+  username: '${KIBANA_USERNAME:}'
+  password: '${KIBANA_PASSWORD:}'

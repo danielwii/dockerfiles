@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:7.11.1
+    user: root
+    environment:
+      - KIBANA_HOST=a54331777df534373a83ca72ee4d3b7b-353727428.ap-northeast-1.elb.amazonaws.com:5601
+      - ELASTICSEARCH_HOSTS=["ab346f13db4e64db6ac3652ea3a259c6-293122992.ap-northeast-1.elb.amazonaws.com:9200"]
+#      - ELASTICSEARCH_USERNAME=elastic
+#      - ELASTICSEARCH_PASSWORD=fQJ18gnrJOq6hnmYoyVC
+    volumes:
+      - "$PWD/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml:ro"
+      - "$PWD/monitors.d:/usr/share/heartbeat/monitors.d:ro"
+#      - "/var/lib/docker/containers:/var/lib/docker/containers:ro"
+#      - "/var/run/docker.sock:/var/run/docker.sock:ro"

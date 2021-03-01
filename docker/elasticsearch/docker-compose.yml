@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    environment:
+#      - ELASTICSEARCH_IS_DEDICATED_NODE=yes
+#      - ELASTICSEARCH_CLUSTER_NAME=elasticsearch-cluster
+#      - ES_JAVA_OPTS=-Xmx1g -Xms1g
+      - node.name=default
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - xpack.security.authc.api_key.enabled=true
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+#      - "$HOME/Development/data/elasticsearch:/bitnami/elasticsearch/data"
+      - "$PWD/elasticsearch.yml:/opt/bitnami/elasticsearch/config/elasticsearch.yml:ro"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
